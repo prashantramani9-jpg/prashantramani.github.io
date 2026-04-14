@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prashant Ramani</title>
+    <meta name="description" content="Prashant Ramani — Chief Customer Officer at Swirl®. Writing about AI, commerce, and the future of how people buy.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        :root {
+            --cream: #f4efe6;
+            --dark: #141210;
+            --border: #d8d0c4;
+            --muted: #8a8278;
+            --lime: #c9f264;
+            --text: #1c1a18;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* ── Top bar (D3) ── */
+        .topbar {
+            border-bottom: 1px solid var(--border);
+            padding: 12px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .topbar-text {
+            font-size: 0.68rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* ── Nav (D3 structure + D2 pill CTA) ── */
+        .nav-row {
+            border-bottom: 2.5px solid var(--dark);
+            padding: 0 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            padding: 18px 0;
+            line-height: 1;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 6px;
+        }
+        .nav-links a {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 8px 18px;
+            border-radius: 100px;
+            border: 1.5px solid transparent;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover { border-color: var(--dark); color: var(--dark); }
+        .nav-links .nav-cta {
+            background: var(--dark);
+            color: var(--cream);
+            border-color: var(--dark);
+        }
+        .nav-links .nav-cta:hover { background: #333; border-color: #333; }
+
+        /* ── Hero (D2 dark card + D3 serif headline) ── */
+        .hero-wrap { padding: 40px 48px 0; }
+        .hero-card {
+            background: var(--dark);
+            border-radius: 20px;
+            padding: 64px 72px 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 560px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: -120px;
+            right: -80px;
+            width: 480px;
+            height: 480px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201,242,100,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 100px;
+            padding: 7px 18px;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #8a8278;
+            margin-bottom: 36px;
+            width: fit-content;
+        }
+        .hero-badge::before { content: '●'; font-size: 0.45rem; color: var(--lime); }
+        .hero-h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3.8rem, 7vw, 6.5rem);
+            font-weight: 300;
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            color: #f0ece4;
+            margin-bottom: 0;
+        }
+        .hero-h1 em { font-style: italic; color: var(--lime); }
+        .hero-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 32px 0 56px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            margin-top: 48px;
+            gap: 48px;
+        }
+        .hero-desc {
+            font-size: 1rem;
+            color: #6e6860;
+            max-width: 440px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            flex-shrink: 0;
+        }
+        .stat { text-align: right; }
+        .stat-val {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            color: #f0ece4;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .stat-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #4a4640;
+        }
+
+        /* ── About (D2 two-col + D3 editorial type) ── */
+        .about-section {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            border-bottom: 1px solid var(--border);
+        }
+        .about-left {
+            padding: 56px 48px;
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .section-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 24px;
+        }
+        .section-eyebrow::before {
+            content: '';
+            display: block;
+            width: 28px;
+            height: 1.5px;
+            background: var(--muted);
+        }
+        .about-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.6rem;
+            font-weight: 300;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--dark);
+            margin-bottom: 32px;
+        }
+        .about-heading em { font-style: italic; }
+        .meta-cards { display: flex; flex-direction: column; gap: 10px; }
+        .meta-card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border: 1px solid #ede8df;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .meta-card:hover { transform: translateX(4px); box-shadow: 0 4px 16px rgba(0,0,0,0.05); }
+        .meta-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+        .meta-title { font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 600; margin-bottom: 1px; }
+        .meta-sub { font-size: 0.72rem; color: var(--muted); }
+
+        .about-right {
+            padding: 56px;
+        }
+        .about-body {
+            font-size: 1.075rem;
+            color: #4a4640;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+        .about-body p + p { margin-top: 20px; }
+        .about-body strong { color: var(--dark); font-weight: 500; }
+        .about-body em {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.2em;
+            color: var(--dark);
+        }
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+        .chip {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            padding: 7px 16px;
+            border-radius: 100px;
+            border: 1.5px solid var(--border);
+            color: var(--muted);
+            transition: all 0.2s;
+        }
+        .chip:hover { border-color: var(--dark); color: var(--dark); }
+
+        /* ── Writing (D3 four-col grid + D2 dark wrapper) ── */
+        .writing-wrap {
+            padding: 40px 48px 48px;
+        }
+        .writing-card {
+            background: var(--dark);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .writing-header {
+            padding: 40px 48px 32px;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        .writing-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: #f0ece4;
+            letter-spacing: -0.02em;
+        }
+        .writing-note {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #3a3830;
+        }
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .article-col {
+            padding: 36px 36px 40px;
+            border-right: 1px solid rgba(255,255,255,0.06);
+            cursor: pointer;
+            transition: background 0.2s;
+            position: relative;
+        }
+        .article-col:last-child { border-right: none; }
+        .article-col:hover { background: rgba(255,255,255,0.03); }
+        .article-col:hover .col-arrow { color: var(--lime); transform: translateX(4px); }
+        .col-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.05);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+        .col-tag {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.62rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #3e3c38;
+            margin-bottom: 14px;
+        }
+        .col-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            line-height: 1.3;
+            color: #d8d4cc;
+            margin-bottom: 14px;
+        }
+        .col-excerpt {
+            font-size: 0.8rem;
+            color: #4e4c48;
+            line-height: 1.65;
+            font-weight: 300;
+        }
+        .col-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .col-date { font-size: 0.68rem; color: #2e2c28; font-family: 'Syne', sans-serif; letter-spacing: 0.06em; }
+        .col-arrow {
+            font-size: 0.9rem;
+            color: #2e2c28;
+            transition: color 0.2s, transform 0.2s;
+            display: inline-block;
+        }
+
+        /* ── Footer ── */
+        .site-footer {
+            border-top: 2.5px solid var(--dark);
+            padding: 28px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--dark);
+        }
+        .footer-links { display: flex; gap: 8px; }
+        .footer-links a {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 7px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: 100px;
+            transition: all 0.2s;
+        }
+        .footer-links a:hover { border-color: var(--dark); color: var(--dark); }
+        .footer-copy {
+            font-size: 0.7rem;
+            color: #bbb4a8;
+            font-family: 'Syne', sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .topbar, .nav-row, .hero-wrap, .about-right, .about-left, .writing-wrap, .site-footer { padding-left: 24px; padding-right: 24px; }
+            .hero-card { padding: 48px 36px 0; border-radius: 16px; }
+            .hero-stats { display: none; }
+            .about-section { grid-template-columns: 1fr; }
+            .about-left { border-right: none; border-bottom: 1px solid var(--border); }
+            .articles-grid { grid-template-columns: 1fr 1fr; }
+            .article-col:nth-child(2) { border-right: none; }
+            .article-col:nth-child(3), .article-col:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.06); }
+            .article-col:nth-child(4) { border-right: none; }
+            .site-footer { flex-direction: column; gap: 20px; text-align: center; }
+        }
+
+        @media (max-width: 580px) {
+            .hero-h1 { font-size: 3rem; }
+            .articles-grid { grid-template-columns: 1fr; }
+            .article-col { border-right: none !important; border-top: 1px solid rgba(255,255,255,0.06) !important; }
+            .article-col:first-child { border-top: none !important; }
+            .nav-links .nav-cta { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+    <span class="topbar-text">Prashant Ramani · Personal Site</span>
+    <span class="topbar-text">India · 2026</span>
+</div>
+
+<!-- Nav -->
+<div class="nav-row">
+    <div class="nav-logo">Prashant Ramani</div>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#writing">Writing</a></li>
+        <li><a href="https://www.linkedin.com/in/prashantramani1994/" target="_blank">LinkedIn</a></li>
+        <li><a href="mailto:prashant.ramani@goswirl.live" class="nav-cta">Get in Touch</a></li>
+    </ul>
+</div>
+
+<!-- Hero -->
+<div class="hero-wrap">
+    <div class="hero-card">
+        <div>
+            <div class="hero-badge">Chief Customer Officer · Swirl®</div>
+            <h1 class="hero-h1">Building the<br>future of how<br>people <em>buy.</em></h1>
+        </div>
+        <div class="hero-bottom">
+            <p class="hero-desc">I work at the intersection of AI, commerce, and human decision-making — helping enterprise brands own their customer relationships before someone else does.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-val">UAE</div>
+                    <div class="stat-label">KSA · India · US</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-val">CES</div>
+                    <div class="stat-label">Eureka Park 2026</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-val">AI</div>
+                    <div class="stat-label">Sales Agents</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- About -->
+<div class="about-section" id="about">
+    <div class="about-left">
+        <div>
+            <div class="section-eyebrow">About</div>
+            <h2 class="about-heading">Helping brands<br>own the<br><em>decision layer.</em></h2>
+        </div>
+        <div class="meta-cards">
+            <div class="meta-card">
+                <div class="meta-icon">🚀</div>
+                <div>
+                    <div class="meta-title">Chief Customer Officer</div>
+                    <div class="meta-sub">Swirl® · AI Sales Agents</div>
+                </div>
+            </div>
+            <div class="meta-card">
+                <div class="meta-icon">📍</div>
+                <div>
+                    <div class="meta-title">Based in India</div>
+                    <div class="meta-sub">UAE · KSA · United States</div>
+                </div>
+            </div>
+            <div class="meta-card">
+                <div class="meta-icon">🎓</div>
+                <div>
+                    <div class="meta-title">Symbiosis Institute</div>
+                    <div class="meta-sub">International Business</div>
+                </div>
+            </div>
+            <div class="meta-card">
+                <div class="meta-icon">✦</div>
+                <div>
+                    <div class="meta-title">CES 2026</div>
+                    <div class="meta-sub">Eureka Park · CTA</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="about-right">
+        <div class="about-body">
+            <p>I'm the Chief Customer Officer at <strong>Swirl®</strong>, a startup building AI sales agents for high-consideration consumer brands — automotive, home improvement, consumer tech.</p>
+            <p>My work revolves around one question: <em>as the interface shifts from scroll to ask, who owns the decision?</em> I believe every enterprise brand will need its own AI sales layer — not a chatbot, but a revenue-generating engine that guides buyers with confidence.</p>
+            <p>I've launched AI-powered buyer experiences with <strong>BYD</strong> and <strong>Al-Futtaim</strong> across the UAE and KSA, represented Swirl at <strong>CES 2026</strong> in the Eureka Park zone, and spent years studying what makes high-ticket buying feel effortless and trustworthy.</p>
+            <p>I write about the tectonic shifts happening at the edge of AI, commerce, and brand strategy — for founders and operators who want to think clearly about what's next.</p>
+        </div>
+        <div class="chips">
+            <span class="chip">Agentic Commerce</span>
+            <span class="chip">AI Sales Agents</span>
+            <span class="chip">Enterprise GTM</span>
+            <span class="chip">Automotive</span>
+            <span class="chip">Consumer Tech</span>
+            <span class="chip">CES 2026</span>
+        </div>
+    </div>
+</div>
+
+<!-- Writing -->
+<div class="writing-wrap" id="writing">
+    <div class="writing-card">
+        <div class="writing-header">
+            <div class="writing-title">Writing</div>
+            <div class="writing-note">Articles launching soon</div>
+        </div>
+        <div class="articles-grid">
+            <div class="article-col">
+                <div class="col-num">I</div>
+                <div class="col-tag">AI · Commerce</div>
+                <div class="col-title">Why Every Enterprise Brand Needs Its Own AI Sales Layer</div>
+                <div class="col-excerpt">The interface is shifting from scroll to ask. Brands that don't build their own AI will become SKUs in someone else's algorithm.</div>
+                <div class="col-footer">
+                    <span class="col-date">Coming soon</span>
+                    <span class="col-arrow">→</span>
+                </div>
+            </div>
+            <div class="article-col">
+                <div class="col-num">II</div>
+                <div class="col-tag">Strategy</div>
+                <div class="col-title">From Pages to Conversations: Commerce's Biggest Shift Since Mobile</div>
+                <div class="col-excerpt">Buyers don't want 14 tabs open anymore. They want answers. What this means for every brand selling high-ticket products.</div>
+                <div class="col-footer">
+                    <span class="col-date">Coming soon</span>
+                    <span class="col-arrow">→</span>
+                </div>
+            </div>
+            <div class="article-col">
+                <div class="col-num">III</div>
+                <div class="col-tag">Tech · Startups</div>
+                <div class="col-title">What CES 2026 Revealed About the Future of Buying</div>
+                <div class="col-excerpt">Four days in Eureka Park, dozens of conversations, one consistent signal: agentic commerce is no longer just a concept.</div>
+                <div class="col-footer">
+                    <span class="col-date">Coming soon</span>
+                    <span class="col-arrow">→</span>
+                </div>
+            </div>
+            <div class="article-col">
+                <div class="col-num">IV</div>
+                <div class="col-tag">AI · Commerce</div>
+                <div class="col-title">Agentic Commerce Isn't Coming — It's Already Here</div>
+                <div class="col-excerpt">Walmart's Sparky. Amazon's Rufus. The question is no longer if — but whether your brand will own the decision or rent it.</div>
+                <div class="col-footer">
+                    <span class="col-date">Coming soon</span>
+                    <span class="col-arrow">→</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="site-footer">
+    <div class="footer-logo">Prashant Ramani</div>
+    <div class="footer-links">
+        <a href="https://www.linkedin.com/in/prashantramani1994/" target="_blank">LinkedIn</a>
+        <a href="mailto:prashant.ramani@goswirl.live">Email</a>
+        <a href="https://goswirl.ai" target="_blank">Swirl®</a>
+    </div>
+    <div class="footer-copy">© 2026</div>
+</div>
+
+</body>
+</html>

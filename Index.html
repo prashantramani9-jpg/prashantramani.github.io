@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prashant Ramani</title>
+    <meta name="description" content="Prashant Ramani — Chief Customer Officer at Swirl®. Writing about AI, commerce, and the future of how people buy.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        :root {
+            --cream: #f4efe6;
+            --dark: #141210;
+            --border: #d8d0c4;
+            --muted: #8a8278;
+            --lime: #c9f264;
+            --text: #1c1a18;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* ── Top bar (D3) ── */
+        .topbar {
+            border-bottom: 1px solid var(--border);
+            padding: 12px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .topbar-text {
+            font-size: 0.68rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* ── Nav (D3 structure + D2 pill CTA) ── */
+        .nav-row {
+            border-bottom: 2.5px solid var(--dark);
+            padding: 0 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            padding: 18px 0;
+            line-height: 1;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 6px;
+        }
+        .nav-links a {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 8px 18px;
+            border-radius: 100px;
+            border: 1.5px solid transparent;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover { border-color: var(--dark); color: var(--dark); }
+        .nav-links .nav-cta {
+            background: var(--dark);
+            color: var(--cream);
+            border-color: var(--dark);
+        }
+        .nav-links .nav-cta:hover { background: #333; border-color: #333; }
+
+        /* ── Hero (D2 dark card + D3 serif headline) ── */
+        .hero-wrap { padding: 40px 48px 48px; }
+        .hero-card {
+            background: var(--dark);
+            border-radius: 20px;
+            padding: 64px 72px 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 560px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: -120px;
+            right: -80px;
+            width: 480px;
+            height: 480px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201,242,100,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 100px;
+            padding: 7px 18px;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #8a8278;
+            margin-bottom: 36px;
+            width: fit-content;
+        }
+        .hero-badge::before { content: '●'; font-size: 0.45rem; color: var(--lime); }
+        .hero-h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3.8rem, 7vw, 6.5rem);
+            font-weight: 300;
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            color: #f0ece4;
+            margin-bottom: 0;
+        }
+        .hero-h1 em { font-style: italic; color: var(--lime); }
+        .hero-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 32px 0 56px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            margin-top: 48px;
+            gap: 48px;
+        }
+        .hero-desc {
+            font-size: 1rem;
+            color: #6e6860;
+            max-width: 440px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            flex-shrink: 0;
+            align-items: flex-end;
+        }
+        .stat { text-align: left; position: relative; }
+        .stat + .stat { padding-left: 48px; }
+        .stat + .stat::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 4px;
+            bottom: 4px;
+            width: 1px;
+            background: rgba(255,255,255,0.12);
+        }
+        .stat-regions { text-align: right; }
+        .region-list {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.75rem;
+            font-weight: 300;
+            color: #f0ece4;
+            line-height: 1;
+            letter-spacing: 0.01em;
+            display: flex;
+            gap: 12px;
+            align-items: baseline;
+            justify-content: flex-end;
+        }
+        .region-sep {
+            color: rgba(255,255,255,0.25);
+            font-size: 1.4rem;
+        }
+        .stat-val {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            color: #f0ece4;
+            line-height: 1;
+            margin-bottom: 8px;
+            letter-spacing: 0.01em;
+        }
+        .stat-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.62rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #8a8278;
+            margin-bottom: 12px;
+        }
+
+        /* ── About — editorial masthead + essay ── */
+        .about-section {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            border-bottom: 1px solid var(--border);
+        }
+        .about-left {
+            padding: 64px 36px;
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+        .section-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 28px;
+        }
+        .section-eyebrow::before {
+            content: '';
+            display: block;
+            width: 28px;
+            height: 1.5px;
+            background: var(--muted);
+        }
+        .about-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.6rem;
+            font-weight: 300;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--dark);
+        }
+        .about-heading em { font-style: italic; }
+
+        /* Typographic index (replaces meta-cards) */
+        .index-list {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid var(--border);
+        }
+        .index-row {
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 72px 1fr;
+            gap: 16px;
+            align-items: baseline;
+        }
+        .index-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .index-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 400;
+            line-height: 1.35;
+            color: var(--dark);
+            letter-spacing: -0.005em;
+        }
+        .index-value em { font-style: italic; }
+
+        .about-right {
+            padding: 64px 64px 72px;
+            display: flex;
+            flex-direction: column;
+        }
+        .about-intro {
+            font-size: 1.075rem;
+            color: #4a4640;
+            line-height: 1.85;
+            font-weight: 300;
+            max-width: 640px;
+        }
+        .about-intro strong { color: var(--dark); font-weight: 500; }
+
+        .pullquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 3.2vw, 2.9rem);
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.12;
+            letter-spacing: -0.02em;
+            color: var(--dark);
+            margin: 56px 0 48px;
+            max-width: 780px;
+            position: relative;
+            padding-left: 44px;
+        }
+        .pullquote::before {
+            content: '“';
+            position: absolute;
+            left: -4px;
+            top: -16px;
+            font-size: 5rem;
+            line-height: 1;
+            color: var(--lime);
+            font-style: normal;
+        }
+
+        .about-body {
+            font-size: 1.075rem;
+            color: #4a4640;
+            line-height: 1.85;
+            font-weight: 300;
+            max-width: 640px;
+        }
+        .about-body strong { color: var(--dark); font-weight: 500; }
+
+        .currently {
+            margin-top: 56px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 24px;
+            align-items: baseline;
+            max-width: 640px;
+        }
+        @media (max-width: 480px) {
+            .currently { grid-template-columns: 1fr; gap: 8px; }
+        }
+        .currently-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .currently-body {
+            font-size: 0.98rem;
+            color: #4a4640;
+            line-height: 1.75;
+            font-weight: 300;
+        }
+        .currently-body strong { color: var(--dark); font-weight: 500; }
+
+        /* ── Writing (D3 four-col grid + D2 dark wrapper) ── */
+        .writing-wrap {
+            padding: 40px 48px 48px;
+        }
+        .writing-card {
+            background: var(--dark);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .writing-header {
+            padding: 40px 48px 32px;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        .writing-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: #f0ece4;
+            letter-spacing: -0.02em;
+        }
+        .writing-note {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #8a8278;
+        }
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .article-col {
+            padding: 36px 36px 40px;
+            border-right: 1px solid rgba(255,255,255,0.06);
+            cursor: pointer;
+            transition: background 0.2s;
+            position: relative;
+        }
+        .article-col:last-child { border-right: none; }
+        .article-col:hover { background: rgba(255,255,255,0.03); }
+        .article-col:hover .col-arrow { color: var(--lime); transform: translateX(4px); }
+        .col-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--lime);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+        .col-tag {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.62rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #a8a096;
+            margin-bottom: 14px;
+        }
+        .col-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            line-height: 1.3;
+            color: #f0ece4;
+            margin-bottom: 14px;
+        }
+        .col-excerpt {
+            font-size: 0.8rem;
+            color: #b8b0a4;
+            line-height: 1.65;
+            font-weight: 300;
+        }
+        .col-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .col-date { font-size: 0.68rem; color: #8a8278; font-family: 'Syne', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
+        .col-arrow {
+            font-size: 0.9rem;
+            color: #8a8278;
+            transition: color 0.2s, transform 0.2s;
+            display: inline-block;
+        }
+
+        /* ── Footer ── */
+        .site-footer {
+            border-top: 2.5px solid var(--dark);
+            padding: 28px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--dark);
+        }
+        .footer-links { display: flex; gap: 8px; }
+        .footer-links a {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 7px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: 100px;
+            transition: all 0.2s;
+        }
+        .footer-links a:hover { border-color: var(--dark); color: var(--dark); }
+        .footer-copy {
+            font-size: 0.7rem;
+            color: #bbb4a8;
+            font-family: 'Syne', sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── Contact dropdown ── */
+        .contact-wrap { position: relative; }
+        .contact-btn {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: var(--dark);
+            color: var(--cream);
+            border: 1.5px solid var(--dark);
+            border-radius: 100px;
+            padding: 8px 18px;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .contact-btn:hover { background: #333; border-color: #333; }
+        .contact-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background: #fff;
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            padding: 12px;
+            min-width: 300px;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+        .contact-dropdown.open { display: block; }
+        .contact-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            transition: background 0.15s;
+        }
+        .contact-row:hover { background: var(--cream); }
+        .contact-email {
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.82rem;
+            color: var(--text);
+            font-weight: 400;
+        }
+        .copy-btn {
+            background: var(--dark);
+            color: var(--cream);
+            border: none;
+            border-radius: 8px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: background 0.2s;
+        }
+        .copy-btn:hover { background: #333; }
+        .copy-btn.copied { background: #4a7c3f; }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .topbar, .nav-row, .hero-wrap, .about-right, .about-left, .writing-wrap, .site-footer { padding-left: 24px; padding-right: 24px; }
+            .hero-card { padding: 48px 36px 0; border-radius: 16px; }
+            .hero-stats { display: none; }
+            .about-section { grid-template-columns: 1fr; }
+            .about-left { border-right: none; border-bottom: 1px solid var(--border); padding: 48px 24px; }
+            .articles-grid { grid-template-columns: 1fr 1fr; }
+            .article-col:nth-child(2) { border-right: none; }
+            .article-col:nth-child(3), .article-col:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.06); }
+            .article-col:nth-child(4) { border-right: none; }
+            .site-footer { flex-direction: column; gap: 20px; text-align: center; }
+            .nav-links { gap: 4px; }
+            .nav-links a { padding: 6px 12px; font-size: 0.65rem; }
+            .nav-logo { font-size: 1.5rem; }
+            .writing-header { padding: 28px 24px 24px; }
+            .about-right { padding-top: 40px; }
+        }
+
+        @media (max-width: 580px) {
+            .hero-h1 { font-size: 2.4rem; }
+            .nav-logo { font-size: 1.3rem; }
+            .articles-grid { grid-template-columns: 1fr; }
+            .article-col { border-right: none !important; border-top: 1px solid rgba(255,255,255,0.06) !important; }
+            .article-col:first-child { border-top: none !important; }
+            .nav-links .nav-cta { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+
+<!-- Nav -->
+<div class="nav-row">
+    <div class="nav-logo">Prashant Ramani</div>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#writing">Writing</a></li>
+        <li><a href="https://www.linkedin.com/in/prashantramani1994/" target="_blank">LinkedIn</a></li>
+        <li class="contact-wrap">
+            <button class="nav-cta contact-btn" onclick="toggleContact(event)">Get in Touch</button>
+            <div class="contact-dropdown" id="contactDropdown">
+                <div class="contact-row">
+                    <span class="contact-email">prashant.ramani@goswirl.live</span>
+                    <button class="copy-btn" onclick="copyEmail(this, 'prashant.ramani@goswirl.live')" title="Copy email"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-email">prashant.ramani9@gmail.com</span>
+                    <button class="copy-btn" onclick="copyEmail(this, 'prashant.ramani9@gmail.com')" title="Copy email"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<!-- Hero -->
+<div class="hero-wrap">
+    <div class="hero-card">
+        <div>
+<h1 class="hero-h1">Building the<br>future of how<br>people <em>buy.</em></h1>
+        </div>
+        <div class="hero-bottom">
+            <p class="hero-desc">I work at the intersection of AI, commerce, and human decision-making — helping enterprise brands own their customer relationships before someone else does.</p>
+            <div class="hero-stats">
+                <div class="stat stat-regions">
+                    <div class="stat-label">Operating in</div>
+                    <div class="region-list">
+                        <span>USA</span>
+                        <span class="region-sep">&middot;</span>
+                        <span>UAE</span>
+                        <span class="region-sep">&middot;</span>
+                        <span>KSA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- About -->
+<div class="about-section" id="about">
+    <div class="about-left">
+        <div>
+            <div class="section-eyebrow">About</div>
+            <h2 class="about-heading">Helping brands<br>own the<br><em>decision layer.</em></h2>
+        </div>
+        <div class="index-list">
+            <div class="index-row">
+                <div class="index-label">Role</div>
+                <div class="index-value">Chief Customer Officer, <em>Swirl&reg;</em></div>
+            </div>
+            <div class="index-row">
+                <div class="index-label">Based</div>
+                <div class="index-value">USA &middot; UAE</div>
+            </div>
+            <div class="index-row">
+                <div class="index-label">Focus</div>
+                <div class="index-value"><em>AI sales agents</em> for high-consideration brands</div>
+            </div>
+            <div class="index-row">
+                <div class="index-label">Studied</div>
+                <div class="index-value">Symbiosis Institute of International Business</div>
+            </div>
+        </div>
+    </div>
+    <div class="about-right">
+        <p class="about-intro">I'm the Chief Customer Officer at <strong>Swirl&reg;</strong>, a startup building AI sales agents for high-consideration consumer brands &mdash; automotive, home improvement, consumer tech.</p>
+
+        <div class="pullquote">As the interface shifts from scroll to ask, who owns the decision?</div>
+
+        <div class="about-body">
+            <p>I believe every enterprise brand will need its own AI sales layer &mdash; not a chatbot, but a revenue-generating engine that guides buyers with confidence. Own the decision, or rent it from someone else's algorithm.</p>
+        </div>
+
+        <div class="currently">
+            <div class="currently-label">Currently</div>
+            <div class="currently-body">Working with <strong>leading automotive brands in the US</strong> to bring AI sales agents onto their websites &mdash; alongside live launches with <strong>BYD</strong>, <strong>Blue Rewards</strong> and <strong>Al-Futtaim</strong> across the UAE and KSA.</div>
+        </div>
+    </div>
+</div>
+
+<!-- Writing -->
+<div class="writing-wrap" id="writing">
+    <div class="writing-card">
+        <div class="writing-header">
+            <div class="writing-title">Writing</div>
+            <div class="writing-note">1 Article Published</div>
+        </div>
+        <div class="articles-grid">
+            <div class="article-col" onclick="window.open('why-enterprise-brands-need-an-ai-sales-layer','_blank')" style="cursor:pointer;">
+                <div class="col-num">I</div>
+                <div class="col-tag">AI · Commerce</div>
+                <div class="col-title">Why Every Enterprise Brand Needs Its Own AI Sales Layer</div>
+                <div class="col-excerpt">The interface is shifting from scroll to ask. Brands that don't build their own AI will become SKUs in someone else's algorithm.</div>
+                <div class="col-footer">
+                    <span class="col-date">April 2026</span>
+                    <span class="col-arrow">→</span>
+                </div>
+            </div>
+            <div class="article-col">
+                <div class="col-num">II</div>
+                <div class="col-tag">Strategy</div>
+                <div class="col-title">From Pages to Conversations: Commerce's Biggest Shift Since Mobile</div>
+                <div class="col-excerpt">Buyers don't want 14 tabs open anymore. They want answers. What this means for every brand selling high-ticket products.</div>
+                <div class="col-footer">
+                    <span class="col-date">Coming soon</span>
+                    <span class="col-arrow">→</span>
+                </div>
+            </div>
+            <div class="article-col">
+                <div class="col-num">III</div>
+                <div class="col-tag">Tech &middot; Startups</div>
+                <div class="col-title">The New Shape of High-Ticket Buying</div>
+                <div class="col-excerpt">Cars, appliances, tech over $2k &mdash; the research, the negotiation, the commitment. What changes when an agent is in the room.</div>
+                <div class="col-footer">
+                    <span class="col-date">Coming soon</span>
+                    <span class="col-arrow">&rarr;</span>
+                </div>
+            </div>
+            <div class="article-col">
+                <div class="col-num">IV</div>
+                <div class="col-tag">AI · Commerce</div>
+                <div class="col-title">Agentic Commerce Isn't Coming — It's Already Here</div>
+                <div class="col-excerpt">Walmart's Sparky. Amazon's Rufus. The question is no longer if — but whether your brand will own the decision or rent it.</div>
+                <div class="col-footer">
+                    <span class="col-date">Coming soon</span>
+                    <span class="col-arrow">→</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="site-footer">
+    <div class="footer-logo">Prashant Ramani</div>
+    <div class="footer-links">
+        <a href="https://www.linkedin.com/in/prashantramani1994/" target="_blank">LinkedIn</a>
+<a href="https://goswirl.ai" target="_blank">Swirl®</a>
+    </div>
+    <div class="footer-copy">© 2026</div>
+</div>
+
+<script>
+    function toggleContact(e) {
+        e.stopPropagation();
+        document.getElementById('contactDropdown').classList.toggle('open');
+    }
+    const copyIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
+    const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+    function copyEmail(btn, email) {
+        event.stopPropagation();
+        navigator.clipboard.writeText(email).then(() => {
+            btn.innerHTML = checkIcon;
+            btn.classList.add('copied');
+            setTimeout(() => { btn.innerHTML = copyIcon; btn.classList.remove('copied'); }, 2000);
+        });
+    }
+    document.addEventListener('click', () => {
+        document.getElementById('contactDropdown').classList.remove('open');
+    });
+</script>
+</body>
+</html>

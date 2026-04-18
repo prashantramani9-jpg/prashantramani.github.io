@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Every Enterprise Brand Needs Its Own AI Sales Layer — Prashant Ramani</title>
+    <meta name="description" content="The interface is shifting from scroll to ask. Brands that don't build their own AI will become SKUs in someone else's algorithm.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        :root {
+            --cream: #f4efe6;
+            --dark: #141210;
+            --border: #d8d0c4;
+            --muted: #8a8278;
+            --lime: #c9f264;
+            --text: #1c1a18;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+
+        /* ── Nav ── */
+        .nav-row {
+            border-bottom: 2.5px solid var(--dark);
+            padding: 0 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            padding: 18px 0;
+            line-height: 1;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 6px;
+        }
+        .nav-links a {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 8px 18px;
+            border-radius: 100px;
+            border: 1.5px solid transparent;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover { border-color: var(--dark); color: var(--dark); }
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 8px 18px;
+            border-radius: 100px;
+            border: 1.5px solid var(--border);
+            transition: all 0.2s;
+        }
+        .nav-back:hover { border-color: var(--dark); color: var(--dark); }
+        .nav-back::before { content: '←'; font-size: 0.85rem; }
+
+        /* ── Article header ── */
+        .article-header-wrap { padding: 40px 48px 0; }
+        .article-header-card {
+            background: var(--dark);
+            border-radius: 20px;
+            padding: 64px 80px 64px;
+            position: relative;
+            overflow: hidden;
+        }
+        .article-header-card::before {
+            content: '';
+            position: absolute;
+            top: -120px;
+            right: -80px;
+            width: 480px;
+            height: 480px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201,242,100,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .article-meta-top {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 36px;
+        }
+        .article-tag {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--lime);
+            background: rgba(201,242,100,0.08);
+            border: 1px solid rgba(201,242,100,0.2);
+            padding: 6px 14px;
+            border-radius: 100px;
+        }
+        .article-num {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #3a3830;
+        }
+        .article-h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            font-weight: 300;
+            line-height: 1.08;
+            letter-spacing: -0.025em;
+            color: #f0ece4;
+            max-width: 780px;
+            margin-bottom: 40px;
+        }
+        .article-byline {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .byline-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: #d0ccc4;
+        }
+        .byline-sep {
+            width: 1px;
+            height: 16px;
+            background: rgba(255,255,255,0.15);
+        }
+        .byline-date {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #9a948c;
+        }
+        .byline-read {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #9a948c;
+        }
+
+        /* ── Article body ── */
+        .article-body-wrap {
+            display: grid;
+            grid-template-columns: 1fr 680px 1fr;
+            padding: 0 48px;
+        }
+        .article-body {
+            grid-column: 2;
+            padding: 72px 0 96px;
+        }
+
+        .article-body p {
+            font-size: 1.075rem;
+            color: #3a3630;
+            line-height: 1.9;
+            font-weight: 300;
+            margin-bottom: 28px;
+        }
+
+        .article-body p:first-child::first-letter {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 300;
+            float: left;
+            line-height: 0.78;
+            margin-right: 12px;
+            margin-top: 8px;
+            color: var(--dark);
+        }
+
+        .article-body .pullquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--dark);
+            margin: 52px 0;
+            padding-left: 36px;
+            border-left: 3px solid var(--lime);
+            position: relative;
+        }
+
+        .article-body .data-callout {
+            background: var(--dark);
+            border-radius: 16px;
+            padding: 36px 40px;
+            margin: 48px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 28px;
+        }
+        .data-item {}
+        .data-val {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
+            font-weight: 300;
+            color: var(--lime);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .data-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #6a6860;
+            line-height: 1.4;
+        }
+
+        .article-body h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            color: var(--dark);
+            margin: 52px 0 20px;
+            line-height: 1.2;
+        }
+
+        .article-body strong { color: var(--dark); font-weight: 500; }
+
+        /* ── Article footer ── */
+        .article-footer-wrap {
+            padding: 0 48px 64px;
+        }
+        .article-footer-inner {
+            border-top: 1px solid var(--border);
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 10px 22px;
+            border: 1.5px solid var(--border);
+            border-radius: 100px;
+            transition: all 0.2s;
+        }
+        .back-link:hover { border-color: var(--dark); color: var(--dark); }
+        .share-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* ── Site footer ── */
+        .site-footer {
+            border-top: 2.5px solid var(--dark);
+            padding: 28px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--dark);
+        }
+        .footer-links { display: flex; gap: 8px; }
+        .footer-links a {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 7px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: 100px;
+            transition: all 0.2s;
+        }
+        .footer-links a:hover { border-color: var(--dark); color: var(--dark); }
+        .footer-copy {
+            font-size: 0.7rem;
+            color: #bbb4a8;
+            font-family: 'Syne', sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .nav-row, .article-header-wrap, .article-footer-wrap, .site-footer { padding-left: 24px; padding-right: 24px; }
+            .article-header-card { padding: 48px 36px; border-radius: 16px; }
+            .article-body-wrap { grid-template-columns: 1fr; padding: 0 24px; }
+            .article-body { grid-column: 1; }
+            .data-callout { grid-template-columns: 1fr 1fr; }
+            .site-footer { flex-direction: column; gap: 20px; text-align: center; }
+        }
+
+        @media (max-width: 580px) {
+            .article-h1 { font-size: 2rem; }
+            .data-callout { grid-template-columns: 1fr; }
+            .article-byline { flex-wrap: wrap; gap: 12px; }
+            .byline-sep { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+</div>
+
+<!-- Nav -->
+<div class="nav-row">
+    <a href="../index.html" class="nav-logo">Prashant Ramani</a>
+    <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#writing">Writing</a></li>
+        <li><a href="https://www.linkedin.com/in/prashantramani1994/" target="_blank">LinkedIn</a></li>
+        <li><a href="../index.html" class="nav-back">All Articles</a></li>
+    </ul>
+</div>
+
+<!-- Article Header -->
+<div class="article-header-wrap">
+    <div class="article-header-card">
+        <div class="article-meta-top">
+            <span class="article-tag">AI · Commerce</span>
+        </div>
+        <h1 class="article-h1">Why Every Enterprise Brand Needs Its Own AI Sales Layer</h1>
+        <div class="article-byline">
+            <span class="byline-name">Prashant Ramani</span>
+            <div class="byline-sep"></div>
+            <span class="byline-date">April 2026</span>
+            <div class="byline-sep"></div>
+            <span class="byline-read">7 min read</span>
+        </div>
+    </div>
+</div>
+
+<!-- Article Body -->
+<div class="article-body-wrap">
+    <div class="article-body">
+
+        <p>There is a moment happening right now in commerce that most brands are either misreading or ignoring entirely. The interface through which people discover, evaluate and buy products is changing. Not incrementally. Not in some distant future. Right now, in real time, the act of buying is shifting from scrolling through pages to asking a question and getting a direct answer.</p>
+
+        <p>This sounds like a product feature. It is not. It is a structural change in who controls the sale.</p>
+
+        <div class="data-callout">
+            <div class="data-item">
+                <div class="data-val">50%</div>
+                <div class="data-label">of Walmart app users have already used Sparky, its AI shopping assistant</div>
+            </div>
+            <div class="data-item">
+                <div class="data-val">35%</div>
+                <div class="data-label">larger orders when buyers use Sparky vs traditional browsing</div>
+            </div>
+            <div class="data-item">
+                <div class="data-val">$12B</div>
+                <div class="data-label">in incremental sales driven by Amazon's Rufus AI buying guide</div>
+            </div>
+        </div>
+
+        <p>These are not pilot numbers. These are not projections. This is revenue being generated because an AI stepped in between the buyer and the product and helped them decide.</p>
+
+        <p>The question enterprise brands need to ask is not "how impressive." The question is: who does that AI work for?</p>
+
+        <div class="pullquote">Rufus works for Amazon. Sparky works for Walmart. When a buyer asks which television to buy and gets a recommendation, Walmart decides what gets surfaced.</div>
+
+        <p>When a buyer asks Sparky which television to buy and gets a recommendation, Walmart decides which brand gets surfaced, which product gets the confidence-building framing, which upsell gets triggered. The brand whose television ends up in the cart had no say in that conversation. They became, effectively, inventory inside someone else's intelligence.</p>
+
+        <p>This is the decision layer. And whoever owns it owns the margin.</p>
+
+        <h2>The battleground has shifted</h2>
+
+        <p>For decades, the battleground in commerce was visibility. Brands competed to show up on page one, to own the best shelf position, to win the search result. Visibility still matters, but it is no longer the final frontier. The final frontier is the moment of decision, and that moment is increasingly being mediated by AI. The brands that understand this early will build for it. The brands that do not will find themselves competing for placement inside an algorithm they do not control, selling to a buyer they never actually spoke to.</p>
+
+        <p>The brands most exposed are the ones selling high-consideration products. Cars. Home appliances. Consumer electronics. These are categories where buyers do not browse and click. They research. They second-guess. They open twelve tabs and still feel uncertain. A car buyer, on average, consults over ten sources before making a purchase decision. That is not a broken journey. That is a buyer who genuinely wants guidance and cannot find it in one place.</p>
+
+        <h2>What we built with BYD</h2>
+
+        <p>This is exactly what we set out to solve when Swirl partnered with BYD and Al-Futtaim Automotive to launch the BYD AI Advisor across the UAE and KSA. The goal was not to build a chatbot that answered FAQs. The goal was to recreate the best version of an in-person conversation with an expert, at scale, across every digital and physical touchpoint the buyer encountered.</p>
+
+        <p>The AI Advisor lives on the BYD website, inside the Blue Rewards app, and in BYD's pop-up stores. A buyer standing in a showroom can ask it why the Sealion 7 has coilover suspension and get a real answer. They can ask how BYD compares to a competitor and receive an honest, structured response with customer reviews and expert video woven in. They can go from "I am interested" to "I want to book a test drive" inside a single conversation.</p>
+
+        <p>What changed was not just conversion. What changed was trust. The buyer who comes through an AI-assisted journey arrives already informed, already confident, already aligned with the product. That changes the entire economics of the sale.</p>
+
+        <div class="pullquote">BYD owns that conversation. Not a marketplace. Not an aggregator. BYD controls the framing, the proof points, the recommendation and the next step.</div>
+
+        <p>That is not a chatbot feature. That is a strategic asset.</p>
+
+        <h2>The implication for every enterprise brand</h2>
+
+        <p>The enterprise brands that will win the next decade are the ones building this now. Not because AI is trendy but because buyer behavior is already ahead of most brand infrastructure. Buyers are already expecting to ask questions and get answers. They are already frustrated by the gap between what they need to know and what a static product page can tell them. The brands that close that gap with their own AI will earn the kind of trust that no paid media can manufacture.</p>
+
+        <p>The ones that wait will find themselves in an increasingly uncomfortable position: selling great products through someone else's intelligence, on someone else's terms, at someone else's margin.</p>
+
+        <p>The platform shift from desktop to mobile took most brands years to react to. This one is moving faster. And unlike mobile, where you could catch up by rebuilding your app, this shift is about relationships. About who the buyer talked to when they were making up their mind. You cannot retrofit that after the fact.</p>
+
+        <p>Every serious enterprise brand needs to own its customer's decision moment. Not rent it. Not hope it goes well inside someone else's ecosystem. Own it.</p>
+
+        <p>The question is not whether AI will mediate the sale. It already does. The only question left is whether your brand is in the room when it happens.</p>
+
+    </div>
+</div>
+
+<!-- Article Footer -->
+<div class="article-footer-wrap">
+    <div class="article-footer-inner">
+        <a href="../index.html#writing" class="back-link">← Back to Writing</a>
+        <span class="share-label">Prashant Ramani · April 2026</span>
+    </div>
+</div>
+
+<!-- Site Footer -->
+<div class="site-footer">
+    <div class="footer-logo">Prashant Ramani</div>
+    <div class="footer-links">
+        <a href="https://www.linkedin.com/in/prashantramani1994/" target="_blank">LinkedIn</a>
+        <a href="https://goswirl.ai" target="_blank">Swirl®</a>
+    </div>
+    <div class="footer-copy">© 2026</div>
+</div>
+
+</body>
+</html>

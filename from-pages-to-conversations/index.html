@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Pages to Conversations: Commerce's Biggest Shift Since Mobile — Prashant Ramani</title>
+    <meta name="description" content="A year ago, shoppers arriving from AI assistants were the worst converting traffic on a retail site. Today they are the best. Here is what actually changed.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        :root {
+            --cream: #f4efe6;
+            --dark: #141210;
+            --border: #d8d0c4;
+            --muted: #8a8278;
+            --lime: #c9f264;
+            --text: #1c1a18;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* ── Nav ── */
+        .nav-row {
+            border-bottom: 2.5px solid var(--dark);
+            padding: 0 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            padding: 18px 0;
+            line-height: 1;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 6px;
+        }
+        .nav-links a {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 8px 18px;
+            border-radius: 100px;
+            border: 1.5px solid transparent;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover { border-color: var(--dark); color: var(--dark); }
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 8px 18px;
+            border-radius: 100px;
+            border: 1.5px solid var(--border);
+            transition: all 0.2s;
+        }
+        .nav-back:hover { border-color: var(--dark); color: var(--dark); }
+        .nav-back::before { content: '←'; font-size: 0.85rem; }
+
+        /* ── Article header ── */
+        .article-header-wrap { padding: 40px 48px 0; }
+        .article-header-card {
+            background: var(--dark);
+            border-radius: 20px;
+            padding: 64px 80px 64px;
+            position: relative;
+            overflow: hidden;
+        }
+        .article-header-card::before {
+            content: '';
+            position: absolute;
+            top: -120px;
+            right: -80px;
+            width: 480px;
+            height: 480px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201,242,100,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .article-meta-top {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 36px;
+        }
+        .article-tag {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--lime);
+            background: rgba(201,242,100,0.08);
+            border: 1px solid rgba(201,242,100,0.2);
+            padding: 6px 14px;
+            border-radius: 100px;
+        }
+        .article-h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            font-weight: 300;
+            line-height: 1.08;
+            letter-spacing: -0.025em;
+            color: #f0ece4;
+            max-width: 820px;
+            margin-bottom: 28px;
+        }
+        .article-standfirst {
+            font-size: 1.05rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: #8a8278;
+            max-width: 620px;
+            margin-bottom: 40px;
+        }
+        .article-byline {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .byline-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: #d0ccc4;
+        }
+        .byline-sep {
+            width: 1px;
+            height: 16px;
+            background: rgba(255,255,255,0.15);
+        }
+        .byline-date, .byline-read {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #9a948c;
+        }
+
+        /* ── Article body ── */
+        .article-body-wrap {
+            display: grid;
+            grid-template-columns: 1fr 680px 1fr;
+            padding: 0 48px;
+        }
+        .article-body {
+            grid-column: 2;
+            padding: 72px 0 96px;
+        }
+
+        .article-body p {
+            font-size: 1.075rem;
+            color: #3a3630;
+            line-height: 1.9;
+            font-weight: 300;
+            margin-bottom: 28px;
+        }
+
+        .article-body p:first-child::first-letter {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 300;
+            float: left;
+            line-height: 0.78;
+            margin-right: 12px;
+            margin-top: 8px;
+            color: var(--dark);
+        }
+
+        .article-body .pullquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--dark);
+            margin: 52px 0;
+            padding-left: 36px;
+            border-left: 3px solid var(--lime);
+        }
+
+        .article-body .data-callout {
+            background: var(--dark);
+            border-radius: 16px;
+            padding: 36px 40px;
+            margin: 48px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 28px;
+        }
+        .data-val {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
+            font-weight: 300;
+            color: var(--lime);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .data-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #8a8278;
+            line-height: 1.4;
+        }
+
+        /* Swing comparison block */
+        .swing-block {
+            border: 1.5px solid var(--border);
+            border-radius: 16px;
+            margin: 48px 0;
+            overflow: hidden;
+            background: #fbf8f2;
+        }
+        .swing-head {
+            padding: 16px 32px;
+            border-bottom: 1.5px solid var(--border);
+            font-family: 'Syne', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 500;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .swing-row {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 24px;
+            padding: 24px 32px;
+            align-items: center;
+        }
+        .swing-row + .swing-row { border-top: 1.5px solid var(--border); }
+        .swing-when {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .swing-fig {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 400;
+            line-height: 1.45;
+            color: #6a645c;
+        }
+        .swing-fig .neg,
+        .swing-fig .pos {
+            font-size: 1.65rem;
+            font-style: italic;
+        }
+        .swing-fig .neg { color: #a8564a; }
+        .swing-fig .pos { color: #4a7c3f; }
+        .swing-foot {
+            padding: 18px 32px;
+            border-top: 1.5px solid var(--border);
+            background: var(--dark);
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--lime);
+        }
+
+        .article-body h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            color: var(--dark);
+            margin: 52px 0 20px;
+            line-height: 1.2;
+        }
+
+        .article-body strong { color: var(--dark); font-weight: 500; }
+
+        /* Sources */
+        .sources {
+            margin-top: 64px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border);
+        }
+        .sources-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 22px;
+        }
+        .source-item {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4px;
+            padding: 14px 0;
+            border-bottom: 1px solid #e6e0d6;
+        }
+        .source-item:first-of-type { border-top: 1px solid #e6e0d6; }
+        .source-claim {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #b0a898;
+        }
+        .source-link {
+            font-size: 0.88rem;
+            font-weight: 400;
+            color: #4a4640;
+            line-height: 1.55;
+            border-bottom: 1px solid #cfc7b8;
+            display: inline;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .source-link:hover { color: var(--dark); border-color: var(--dark); }
+        .source-note {
+            font-size: 0.76rem;
+            color: #a09888;
+            font-weight: 300;
+        }
+        .sources-caveat {
+            margin-top: 22px;
+            font-size: 0.78rem !important;
+            color: #a09888 !important;
+            line-height: 1.7 !important;
+            font-weight: 300;
+            margin-bottom: 0 !important;
+        }
+
+        /* ── Article footer ── */
+        .article-footer-wrap { padding: 0 48px 64px; }
+        .article-footer-inner {
+            border-top: 1px solid var(--border);
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 10px 22px;
+            border: 1.5px solid var(--border);
+            border-radius: 100px;
+            transition: all 0.2s;
+        }
+        .back-link:hover { border-color: var(--dark); color: var(--dark); }
+        .share-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* ── Site footer ── */
+        .site-footer {
+            border-top: 2.5px solid var(--dark);
+            padding: 28px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--dark);
+        }
+        .footer-links { display: flex; gap: 8px; }
+        .footer-links a {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 7px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: 100px;
+            transition: all 0.2s;
+        }
+        .footer-links a:hover { border-color: var(--dark); color: var(--dark); }
+        .footer-copy {
+            font-size: 0.7rem;
+            color: #bbb4a8;
+            font-family: 'Syne', sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .nav-row, .article-header-wrap, .article-footer-wrap, .site-footer { padding-left: 24px; padding-right: 24px; }
+            .article-header-card { padding: 44px 28px; border-radius: 16px; }
+            .article-body-wrap { grid-template-columns: 1fr; padding: 0 24px; }
+            .article-body { grid-column: 1; padding: 48px 0 64px; }
+            .data-callout { grid-template-columns: 1fr; padding: 28px; }
+            .site-footer { flex-direction: column; gap: 20px; text-align: center; }
+            .nav-links { gap: 4px; }
+            .nav-links a, .nav-back { padding: 6px 12px; font-size: 0.65rem; }
+            .nav-logo { font-size: 1.5rem; }
+            .swing-row { grid-template-columns: 1fr; gap: 8px; padding: 20px 24px; }
+        }
+
+        @media (max-width: 580px) {
+            .article-h1 { font-size: 2rem; }
+            .nav-logo { font-size: 1.3rem; }
+            .article-byline { flex-wrap: wrap; gap: 12px; }
+            .byline-sep { display: none; }
+            .article-body .pullquote { padding-left: 22px; margin: 40px 0; }
+            .article-footer-inner { flex-direction: column; gap: 20px; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Nav -->
+<div class="nav-row">
+    <a href="../index.html" class="nav-logo">Prashant Ramani</a>
+    <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#writing">Writing</a></li>
+        <li><a href="https://www.linkedin.com/in/prashantramani1994/" target="_blank">LinkedIn</a></li>
+        <li><a href="../index.html" class="nav-back">All Articles</a></li>
+    </ul>
+</div>
+
+<!-- Article Header -->
+<div class="article-header-wrap">
+    <div class="article-header-card">
+        <div class="article-meta-top">
+            <span class="article-tag">Strategy</span>
+        </div>
+        <h1 class="article-h1">From Pages to Conversations: Commerce's Biggest Shift Since Mobile</h1>
+        <p class="article-standfirst">A year ago, shoppers arriving from AI assistants were the worst converting traffic on a retail site. Today they are the best. Most brands cannot see it happening in their own dashboard.</p>
+        <div class="article-byline">
+            <span class="byline-name">Prashant Ramani</span>
+            <div class="byline-sep"></div>
+            <span class="byline-date">August 2026</span>
+            <div class="byline-sep"></div>
+            <span class="byline-read">8 min read</span>
+        </div>
+    </div>
+</div>
+
+<!-- Article Body -->
+<div class="article-body-wrap">
+    <div class="article-body">
+
+        <p>Every few years something gets called the biggest shift since mobile. Most of the time it is a feature with good public relations. This one is different, and the numbers have finally caught up to the claim.</p>
+
+        <div class="swing-block">
+            <div class="swing-head">Shoppers arriving from AI assistants &middot; US retail sites</div>
+            <div class="swing-row">
+                <div class="swing-when">March 2025</div>
+                <div class="swing-fig"><span class="neg">Worst converting channel.</span><br>38% below paid search, email and affiliates.</div>
+            </div>
+            <div class="swing-row">
+                <div class="swing-when">March 2026</div>
+                <div class="swing-fig"><span class="pos">Best converting channel.</span><br>42% above those same channels.</div>
+            </div>
+            <div class="swing-foot">Worst to best in twelve months</div>
+        </div>
+
+        <p>Nothing about the products changed. Nothing about the checkout changed. What changed is what the buyer had already done before they arrived.</p>
+
+        <h2>What the reversal actually measures</h2>
+
+        <p>The early wave of AI traffic was curious. People were prodding a new toy, asking it questions with no real intent behind them, then wandering off. Of course it converted badly.</p>
+
+        <p>The traffic arriving now is qualified in a way that no other channel produces. Someone who asks an assistant which mid size SUV under $45,000 has the best safety rating and the lowest five year cost of ownership, and then clicks through, has already done the comparison. They have already narrowed. They arrive at the end of the decision, not the beginning of it.</p>
+
+        <p>This is the part most brands are getting wrong. They are treating AI referrals as a new acquisition channel to be optimised alongside the others. It is not a channel. It is a different stage of the journey showing up at your door, and your site is still built to greet people at stage one.</p>
+
+        <div class="pullquote">You are optimising a welcome mat for someone who has already decided to move in.</div>
+
+        <h2>The part almost nobody can see</h2>
+
+        <p>Here is the uncomfortable detail. Most brands cannot measure any of this.</p>
+
+        <p>Roughly 70% of AI referrals get misclassified as direct traffic in a standard analytics setup. Estimates put the systematic undercount at three to four times. So the average marketing team is looking at a dashboard where this shows up as a rounding error, while the real behaviour change underneath is several times larger than what they are seeing.</p>
+
+        <p>Meanwhile the volume itself is compounding fast.</p>
+
+        <div class="data-callout">
+            <div class="data-item">
+                <div class="data-val">393%</div>
+                <div class="data-label">Year over year growth in AI driven traffic to US retail, Q1 2025 to Q1 2026</div>
+            </div>
+            <div class="data-item">
+                <div class="data-val">$262B</div>
+                <div class="data-label">Global orders influenced by AI agents in the 2025 holiday season, about 20% of all orders</div>
+            </div>
+            <div class="data-item">
+                <div class="data-val">59%</div>
+                <div class="data-label">Faster sales growth for retailers running their own shopper agent versus those without one</div>
+            </div>
+        </div>
+
+        <p>A channel growing at triple digits, converting better than everything else, and largely invisible in the reporting. That is an unusual combination, and it is the reason so many leadership teams are underreacting.</p>
+
+        <h2>What it looks like in a high consideration category</h2>
+
+        <p>Automotive is where I spend my time, and it shows the shift more clearly than anything else because the stakes per decision are so high.</p>
+
+        <p>Cox Automotive's 2026 Car Buyer Journey Study, the first year they have tracked this, found that 19% of all vehicle buyers and 25% of new car buyers used AI tools during their research. Vendor research from Ekho puts the figure closer to 30%. I would trust the Cox number and treat it as a floor, because it is the conservative read and it is already large for a behaviour nobody was measuring twelve months ago.</p>
+
+        <p>But the number that matters most has been true for years and almost everyone has ignored what it now implies. Around 67% of car buyers begin their purchase journey online, outside of normal business hours.</p>
+
+        <p>Read that alongside the AI adoption numbers and the conclusion is hard to avoid. The moment of highest intent is happening when your showroom is closed, your sales team is asleep, and the only thing available to answer a real question is whatever software you left running. For most brands, that software is a form and a phone number.</p>
+
+        <div class="pullquote">The most important conversation your brand has is now happening at 11pm, and someone else is having it.</div>
+
+        <h2>The tell nobody talked about</h2>
+
+        <p>Through late 2025 and into 2026, the infrastructure got built out fast. OpenAI and Stripe published the Agentic Commerce Protocol in September 2025, an open standard for how agents talk to merchant catalogues, inventory and checkout. Google followed at NRF in January 2026 with its own Universal Commerce Protocol, launching alongside Etsy, Shopify, Target, Walmart, Wayfair and Gap.</p>
+
+        <p>Then something interesting happened that got far less attention than it deserved.</p>
+
+        <p>On 4 March 2026, OpenAI shifted away from Instant Checkout as a consumer facing feature and moved toward a merchant controlled checkout model. The AI handles discovery and builds purchase intent. The merchant keeps the transaction.</p>
+
+        <p>Sit with that for a second. The company with the most widely used consumer AI in the world looked at agentic commerce, looked at the option of owning the entire transaction, and concluded that the merchant should own the close.</p>
+
+        <p>That is not a retreat. It is an admission about where trust actually lives. People will happily let an AI help them decide. They are considerably more careful about who they hand their money to, especially above a certain price point. Discovery can be borrowed. The close cannot.</p>
+
+        <h2>Pages do not die. They get demoted.</h2>
+
+        <p>None of this means the product page disappears. Physical showrooms did not disappear when ecommerce arrived, and web pages will not disappear now.</p>
+
+        <p>What changes is the job the page does. It stops being the place where the decision gets made and becomes the place where a decision already made gets confirmed and executed. That is a demotion, and it should change how you invest.</p>
+
+        <p>If the decision now happens in a conversation, then the conversation is the asset. Every dollar spent making a static page marginally more persuasive is a dollar spent on the wrong surface. The question is not how to make the page better. The question is who owns the conversation that happens before anyone reaches the page.</p>
+
+        <p>Salesforce's holiday data puts a number on what that ownership is worth. Retailers running their own shopper agent grew sales 59% faster than retailers who sat it out. Not retailers who showed up inside someone else's assistant. Retailers who ran their own.</p>
+
+        <h2>The honest counterweight</h2>
+
+        <p>The hype cycle deserves a caveat, so here it is.</p>
+
+        <p>AI referral volume is still small. Depending on how you measure it, somewhere between 47 and 190 times smaller than Google organic. If you reallocated your entire budget to AI visibility tomorrow you would be making a bad decision with good data.</p>
+
+        <p>But volume is not the signal. Direction and quality are. Around 38% of US consumers have already used generative AI to shop, and roughly 80% say they plan to during 2026. Low volume, high conversion, steep growth curve, infrastructure being laid by every major platform at once. That is precisely what mobile looked like in 2009, when most brands still thought a mobile site was a smaller version of their desktop site.</p>
+
+        <h2>What mobile actually taught us</h2>
+
+        <p>The brands that won mobile were not the ones who shrank their desktop experience to fit a phone. They were the ones who asked what this thing makes possible that was not possible before. Location. Camera. Push. Always on. Uber and Instagram are not desktop products with smaller buttons.</p>
+
+        <p>The same question applies now, and most brands are asking a much smaller version of it. "How do we show up in ChatGPT" is the search engine optimisation version of the question. It treats a behavioural shift as a visibility problem.</p>
+
+        <p>The real question is harder. When your buyer wants to have a conversation, whose conversation is it? Who decides what gets recommended, how the comparison gets framed, which objection gets answered and which proof point gets surfaced?</p>
+
+        <p>Because the conversation is the new storefront. And most brands are currently renting theirs from someone whose incentives are not aligned with theirs.</p>
+
+        <p>Mobile took most companies five years to react to properly. This one is moving considerably faster, and unlike mobile you cannot catch up later by rebuilding an app. What is being decided right now is who the buyer talks to when they are making up their mind. That is a relationship, not a feature, and you cannot retrofit it after the fact.</p>
+
+        <div class="sources">
+            <div class="sources-label">Sources</div>
+
+            <div class="source-item">
+                <div class="source-claim">Conversion reversal &amp; traffic growth</div>
+                <div><a class="source-link" href="https://business.adobe.com/blog/ai-traffic-surge-retail-sites-not-machine-readable" target="_blank" rel="noopener">Adobe Analytics, Q1 2026 AI Traffic Report</a> <span class="source-note">&middot; also covered by <a class="source-link" href="https://techcrunch.com/2026/04/16/ai-traffic-to-us-retailers-rose-393-in-q1-and-its-boosting-their-revenue-too/" target="_blank" rel="noopener">TechCrunch</a></span></div>
+            </div>
+
+            <div class="source-item">
+                <div class="source-claim">Holiday orders influenced by AI agents</div>
+                <div><a class="source-link" href="https://www.salesforce.com/news/stories/2025-holiday-shopping-data/" target="_blank" rel="noopener">Salesforce, 2025 Holiday Shopping Data</a></div>
+            </div>
+
+            <div class="source-item">
+                <div class="source-claim">Automotive buyer AI adoption</div>
+                <div><a class="source-link" href="https://www.coxautoinc.com/insights/cox-automotive-car-buyer-journey-study-finds-efficiency-digital-tools-and-ai-drive-record-satisfaction/" target="_blank" rel="noopener">Cox Automotive, 2026 Car Buyer Journey Study</a> <span class="source-note">&middot; 2,300 US buyers surveyed, autumn 2025</span></div>
+            </div>
+
+            <div class="source-item">
+                <div class="source-claim">Agentic Commerce Protocol</div>
+                <div><a class="source-link" href="https://stripe.com/newsroom/news/stripe-openai-instant-checkout" target="_blank" rel="noopener">Stripe and OpenAI, September 2025</a></div>
+            </div>
+
+            <div class="source-item">
+                <div class="source-claim">OpenAI checkout strategy shift</div>
+                <div><a class="source-link" href="https://www.digitalcommerce360.com/2026/03/06/openai-shifts-checkout-plans-agentic-commerce-strategy/" target="_blank" rel="noopener">Digital Commerce 360, March 2026</a></div>
+            </div>
+
+            <div class="source-item">
+                <div class="source-claim">Higher automotive AI figure</div>
+                <div><a class="source-link" href="https://www.ekho.com/blog/2026-ai-vehicle-research-study-how-buyers-are-using-chatgpt-and-other-ai-tools-to-find-their-next-vehicle/" target="_blank" rel="noopener">Ekho, 2026 AI Vehicle Research Study</a> <span class="source-note">&middot; vendor research</span></div>
+            </div>
+
+            <div class="source-item">
+                <div class="source-claim">Attribution undercount</div>
+                <div><a class="source-link" href="https://metricusapp.com/blog/chatgpt-referral-conversion-rates-shopify-2026/" target="_blank" rel="noopener">Metricus, AI referral measurement analysis</a> <span class="source-note">&middot; vendor analysis</span></div>
+            </div>
+
+            <p class="sources-caveat">Where two sources disagree, the more conservative figure is used in the text. Vendor research is labelled as such.</p>
+        </div>
+
+    </div>
+</div>
+
+<!-- Article Footer -->
+<div class="article-footer-wrap">
+    <div class="article-footer-inner">
+        <a href="../index.html#writing" class="back-link">← Back to Writing</a>
+        <span class="share-label">Prashant Ramani · August 2026</span>
+    </div>
+</div>
+
+<!-- Site Footer -->
+<div class="site-footer">
+    <div class="footer-logo">Prashant Ramani</div>
+    <div class="footer-links">
+        <a href="https://www.linkedin.com/in/prashantramani1994/" target="_blank">LinkedIn</a>
+        <a href="https://goswirl.ai" target="_blank">Swirl®</a>
+    </div>
+    <div class="footer-copy">© 2026</div>
+</div>
+
+</body>
+</html>

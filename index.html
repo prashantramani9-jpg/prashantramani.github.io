@@ -396,6 +396,8 @@
             cursor: pointer;
             transition: background 0.2s;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
         .article-col:last-child { border-right: none; }
         .article-col:hover { background: rgba(255,255,255,0.03); }
@@ -429,12 +431,13 @@
             color: #b8b0a4;
             line-height: 1.65;
             font-weight: 300;
+            margin-bottom: 24px;
         }
         .col-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 24px;
+            margin-top: auto;
             padding-top: 16px;
             border-top: 1px solid rgba(255,255,255,0.05);
         }
@@ -589,7 +592,7 @@
     <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#writing">Writing</a></li>
-        <li><a href="https://www.linkedin.com/in/prashantramani1994/" target="_blank">LinkedIn</a></li>
+        <li><a href="https://www.linkedin.com/in/ramani-prashant/" target="_blank">LinkedIn</a></li>
         <li class="contact-wrap">
             <button class="nav-cta contact-btn" onclick="toggleContact(event)">Get in Touch</button>
             <div class="contact-dropdown" id="contactDropdown">
@@ -728,8 +731,7 @@
 <div class="site-footer">
     <div class="footer-logo">Prashant Ramani</div>
     <div class="footer-links">
-        <a href="https://www.linkedin.com/in/prashantramani1994/" target="_blank">LinkedIn</a>
-<a href="https://goswirl.ai" target="_blank">Swirl®</a>
+        <a href="https://www.linkedin.com/in/ramani-prashant/" target="_blank">LinkedIn</a>
     </div>
     <div class="footer-copy">© 2026</div>
 </div>

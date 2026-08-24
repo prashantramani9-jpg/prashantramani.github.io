@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The New Shape of High-Ticket Buying — Prashant Ramani</title>
+    <meta name="description" content="Buyers who used AI during their car search trusted the dealer more, not less. That one finding changes what an AI sales agent is actually for.">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        :root {
+            --cream: #f4efe6;
+            --dark: #141210;
+            --border: #d8d0c4;
+            --muted: #8a8278;
+            --lime: #c9f264;
+            --text: #1c1a18;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* ── Nav ── */
+        .nav-row {
+            border-bottom: 2.5px solid var(--dark);
+            padding: 0 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            padding: 18px 0;
+            line-height: 1;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 6px;
+        }
+        .nav-links a {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 8px 18px;
+            border-radius: 100px;
+            border: 1.5px solid transparent;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover { border-color: var(--dark); color: var(--dark); }
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 8px 18px;
+            border-radius: 100px;
+            border: 1.5px solid var(--border);
+            transition: all 0.2s;
+        }
+        .nav-back:hover { border-color: var(--dark); color: var(--dark); }
+        .nav-back::before { content: '←'; font-size: 0.85rem; }
+
+        /* ── Article header ── */
+        .article-header-wrap { padding: 40px 48px 0; }
+        .article-header-card {
+            background: var(--dark);
+            border-radius: 20px;
+            padding: 64px 80px 64px;
+            position: relative;
+            overflow: hidden;
+        }
+        .article-header-card::before {
+            content: '';
+            position: absolute;
+            top: -120px;
+            right: -80px;
+            width: 480px;
+            height: 480px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201,242,100,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .article-meta-top {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 36px;
+        }
+        .article-tag {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--lime);
+            background: rgba(201,242,100,0.08);
+            border: 1px solid rgba(201,242,100,0.2);
+            padding: 6px 14px;
+            border-radius: 100px;
+        }
+        .article-h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            font-weight: 300;
+            line-height: 1.08;
+            letter-spacing: -0.025em;
+            color: #f0ece4;
+            max-width: 820px;
+            margin-bottom: 28px;
+        }
+        .article-standfirst {
+            font-size: 1.05rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: #b8b0a4;
+            max-width: 620px;
+            margin-bottom: 40px;
+        }
+        .article-byline {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .byline-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: #d0ccc4;
+        }
+        .byline-sep { width: 1px; height: 16px; background: rgba(255,255,255,0.15); }
+        .byline-date, .byline-read {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #9a948c;
+        }
+
+        /* ── Article body ── */
+        .article-body-wrap {
+            display: grid;
+            grid-template-columns: 1fr 680px 1fr;
+            padding: 0 48px;
+        }
+        .article-body {
+            grid-column: 2;
+            padding: 72px 0 96px;
+        }
+
+        .article-body p {
+            font-size: 1.075rem;
+            color: #3a3630;
+            line-height: 1.9;
+            font-weight: 300;
+            margin-bottom: 28px;
+        }
+
+        .article-body > p:first-of-type::first-letter {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 300;
+            float: left;
+            line-height: 0.78;
+            margin-right: 12px;
+            margin-top: 8px;
+            color: var(--dark);
+        }
+
+        .article-body .pullquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--dark);
+            margin: 52px 0;
+            padding-left: 36px;
+            border-left: 3px solid var(--lime);
+        }
+
+        .article-body h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            color: var(--dark);
+            margin: 52px 0 20px;
+            line-height: 1.2;
+        }
+
+        .article-body strong { color: var(--dark); font-weight: 500; }
+
+        /* ── Data visual: one shared system for all three ── */
+        .dv {
+            border: 1.5px solid var(--border);
+            border-radius: 16px;
+            margin: 48px 0;
+            overflow: hidden;
+            background: #fbf8f2;
+        }
+        .dv-head {
+            padding: 18px 28px;
+            border-bottom: 1.5px solid var(--border);
+        }
+        .dv-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 600;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            color: var(--dark);
+            line-height: 1.4;
+        }
+        .dv-note {
+            font-size: 0.83rem;
+            font-weight: 300;
+            color: var(--muted);
+            line-height: 1.55;
+            margin-top: 6px;
+        }
+        .dv-cols {
+            display: grid;
+            grid-template-columns: 1fr 96px 96px;
+            gap: 16px;
+            margin-top: 12px;
+        }
+        .dv-cols span {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.58rem;
+            font-weight: 600;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            text-align: right;
+            color: #b0a898;
+        }
+        .dv-cols span:first-child { text-align: left; }
+        .dv-cols span.hi { color: #4a7c3f; }
+
+        .dv-row {
+            display: grid;
+            grid-template-columns: 1fr 96px 96px;
+            gap: 16px;
+            padding: 16px 28px;
+            align-items: baseline;
+        }
+        .dv-row + .dv-row { border-top: 1px solid #e6e0d6; }
+        .dv-row.two { grid-template-columns: 1fr 110px; }
+        .dv-row.tier { grid-template-columns: 104px 1fr; align-items: center; padding: 20px 28px; }
+
+        .dv-label {
+            font-size: 0.92rem;
+            color: #4a4640;
+            font-weight: 300;
+            line-height: 1.45;
+        }
+        .dv-val {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            line-height: 1;
+            text-align: right;
+            color: #4a4640;
+        }
+        .dv-val.hi { color: #4a7c3f; font-weight: 600; }
+        .dv-val.lo { color: #a8a098; font-weight: 400; }
+        .dv-val.deficit { color: #a8564a; font-weight: 500; }
+        .dv-unit {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: #b0a898;
+            margin-left: 3px;
+        }
+
+        /* tier rows: the number shrinks in weight as the appetite collapses */
+        .dv-tier-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.1rem;
+            line-height: 1;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        .dv-row.tier.mid .dv-tier-num { color: #8a8278; font-weight: 400; }
+        .dv-row.tier.low .dv-tier-num { color: #b8b0a4; font-weight: 400; }
+        .dv-tier-text {
+            font-size: 0.92rem;
+            color: #4a4640;
+            font-weight: 300;
+            line-height: 1.55;
+        }
+        .dv-row.tier.mid .dv-tier-text,
+        .dv-row.tier.low .dv-tier-text { color: #7a746c; }
+
+        .dv-foot {
+            padding: 14px 28px;
+            background: var(--dark);
+            font-family: 'Syne', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 500;
+            letter-spacing: 0.11em;
+            text-transform: uppercase;
+            color: var(--lime);
+        }
+
+        /* ── Sources ── */
+        .sources {
+            margin-top: 64px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border);
+        }
+        .sources-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 22px;
+        }
+        .source-item {
+            display: grid;
+            gap: 4px;
+            padding: 14px 0;
+            border-bottom: 1px solid #e6e0d6;
+        }
+        .source-item:first-of-type { border-top: 1px solid #e6e0d6; }
+        .source-claim {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #b0a898;
+        }
+        .source-link {
+            font-size: 0.88rem;
+            font-weight: 400;
+            color: #4a4640;
+            line-height: 1.55;
+            border-bottom: 1px solid #cfc7b8;
+            display: inline;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .source-link:hover { color: var(--dark); border-color: var(--dark); }
+        .source-note { font-size: 0.76rem; color: #a09888; font-weight: 300; }
+        .sources-caveat {
+            margin-top: 22px;
+            font-size: 0.78rem !important;
+            color: #a09888 !important;
+            line-height: 1.7 !important;
+            font-weight: 300;
+            margin-bottom: 0 !important;
+        }
+
+        /* ── Article footer ── */
+        .article-footer-wrap { padding: 0 48px 64px; }
+        .article-footer-inner {
+            border-top: 1px solid var(--border);
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 10px 22px;
+            border: 1.5px solid var(--border);
+            border-radius: 100px;
+            transition: all 0.2s;
+        }
+        .back-link:hover { border-color: var(--dark); color: var(--dark); }
+        .share-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* ── Site footer ── */
+        .site-footer {
+            border-top: 2.5px solid var(--dark);
+            padding: 28px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--dark);
+        }
+        .footer-links { display: flex; gap: 8px; }
+        .footer-links a {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 7px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: 100px;
+            transition: all 0.2s;
+        }
+        .footer-links a:hover { border-color: var(--dark); color: var(--dark); }
+        .footer-copy {
+            font-size: 0.7rem;
+            color: #bbb4a8;
+            font-family: 'Syne', sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .nav-row, .article-header-wrap, .article-footer-wrap, .site-footer { padding-left: 24px; padding-right: 24px; }
+            .article-header-card { padding: 44px 28px; border-radius: 16px; }
+            .article-body-wrap { grid-template-columns: 1fr; padding: 0 24px; }
+            .article-body { grid-column: 1; padding: 48px 0 64px; }
+            .site-footer { flex-direction: column; gap: 20px; text-align: center; }
+            .nav-links { gap: 4px; }
+            .nav-links a, .nav-back { padding: 6px 12px; font-size: 0.65rem; }
+            .nav-logo { font-size: 1.5rem; }
+            .dv-head, .dv-row { padding-left: 18px; padding-right: 18px; }
+            .dv-cols, .dv-row { grid-template-columns: 1fr 62px 62px; gap: 10px; }
+            .dv-row.two { grid-template-columns: 1fr 84px; }
+            .dv-row.tier { grid-template-columns: 76px 1fr; gap: 14px; }
+            .dv-val { font-size: 1.25rem; }
+            .dv-tier-num { font-size: 1.7rem; }
+            .dv-foot { padding-left: 18px; padding-right: 18px; }
+        }
+
+        @media (max-width: 580px) {
+            .article-h1 { font-size: 2rem; }
+            .nav-logo { font-size: 1.3rem; }
+            .article-byline { flex-wrap: wrap; gap: 12px; }
+            .byline-sep { display: none; }
+            .article-body .pullquote { padding-left: 22px; margin: 40px 0; }
+            .article-footer-inner { flex-direction: column; gap: 20px; align-items: flex-start; }
+            .dv-label, .dv-tier-text { font-size: 0.84rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Nav -->
+<div class="nav-row">
+    <a href="../index.html" class="nav-logo">Prashant Ramani</a>
+    <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#writing">Writing</a></li>
+        <li><a href="https://www.linkedin.com/in/ramani-prashant/" target="_blank">LinkedIn</a></li>
+        <li><a href="../index.html" class="nav-back">All Articles</a></li>
+    </ul>
+</div>
+
+<!-- Article Header -->
+<div class="article-header-wrap">
+    <div class="article-header-card">
+        <div class="article-meta-top">
+            <span class="article-tag">Tech &middot; Startups</span>
+        </div>
+        <h1 class="article-h1">The New Shape of High-Ticket Buying</h1>
+        <p class="article-standfirst">Car buyers who used AI during their search trusted the dealer more, not less. That single finding changes what an AI sales agent is actually for.</p>
+        <div class="article-byline">
+            <span class="byline-name">Prashant Ramani</span>
+            <div class="byline-sep"></div>
+            <span class="byline-date">August 2026</span>
+            <div class="byline-sep"></div>
+            <span class="byline-read">9 min read</span>
+        </div>
+    </div>
+</div>
+
+<!-- Article Body -->
+<div class="article-body-wrap">
+    <div class="article-body">
+
+        <p>Most high-ticket retail strategy assumes a big purchase has to be a long ordeal. Weeks of research, endless comparison, a buyer who arrives exhausted and suspicious.</p>
+
+        <p>Cox Automotive has tracked car buying for sixteen years. In their 2025 study, released this January, the total time spent buying a vehicle went down and satisfaction went up. 76% of new vehicle buyers were highly satisfied, the highest figure Cox has ever recorded. They credit efficiency directly: almost two fewer hours online, around thirty fewer minutes at the dealership.</p>
+
+        <p>Less time, more satisfaction, in a year when 62% of consumers said owning a car was becoming too expensive.</p>
+
+        <p>So the journey is compressing. It is not compressing evenly, and where the time still goes is the whole story.</p>
+
+        <h2>Half of it happens before you exist</h2>
+
+        <p>Cox breaks the total down. Seven hours and eleven minutes researching and shopping online, alone, before any conversation with a seller. Forty six minutes talking to other people. Two hours fifty five visiting dealerships, and another two hours fifty five with the one they finally bought from.</p>
+
+        <p>Roughly half the purchase is a solitary research problem that resolves before you know the buyer exists. Most brands understand that in principle. What almost nobody has priced correctly is what happens when an AI turns up inside those seven hours.</p>
+
+        <h2>What changes when AI is in the room</h2>
+
+        <p>Cox split their mostly digital buyers by whether they used AI during the search. Same year, same category, same digital-first behaviour.</p>
+
+        <div class="dv">
+            <div class="dv-head">
+                <div class="dv-title">The same purchase, with and without AI</div>
+                <div class="dv-note">Share of buyers who agreed with each statement, split by whether they used AI while shopping.</div>
+                <div class="dv-cols"><span>Mostly digital buyers, 2025</span><span class="hi">Used AI</span><span>Did not</span></div>
+            </div>
+            <div class="dv-row">
+                <div class="dv-label">Satisfied with the overall shopping experience</div>
+                <div class="dv-val hi">84%</div>
+                <div class="dv-val lo">71%</div>
+            </div>
+            <div class="dv-row">
+                <div class="dv-label">Trust the dealer gave them the best deal</div>
+                <div class="dv-val hi">81%</div>
+                <div class="dv-val lo">67%</div>
+            </div>
+            <div class="dv-row">
+                <div class="dv-label">Satisfied with how long the process took</div>
+                <div class="dv-val hi">81%</div>
+                <div class="dv-val lo">65%</div>
+            </div>
+            <div class="dv-row">
+                <div class="dv-label">Said the experience was better than last time</div>
+                <div class="dv-val hi">63%</div>
+                <div class="dv-val lo">48%</div>
+            </div>
+            <div class="dv-foot">Cox Automotive Car Buyer Journey 2025 &middot; 2,344 US buyers</div>
+        </div>
+
+        <p>The AI was not in the room during that negotiation. It changed how buyers felt about it anyway. They walked in already knowing what a fair number looked like, so they could recognise one when it was offered.</p>
+
+        <div class="pullquote">The machine's job is not to close. It is to make the buyer sure, so the human can.</div>
+
+        <p>That inverts how this technology usually gets sold. The pitch is substitution, the machine doing what a person used to do. What the data actually describes is a handover.</p>
+
+        <h2>How much they will actually hand over</h2>
+
+        <p>Accenture put this to 25,590 people across sixteen countries. Nearly three in four said they would trust a personal AI agent more than their best friend to make a purchase on their behalf. Then they asked what people would let the agent actually do.</p>
+
+        <div class="dv">
+            <div class="dv-head">
+                <div class="dv-title">How far people will delegate</div>
+                <div class="dv-note">Share of consumers willing to let an AI agent go this far on their behalf.</div>
+            </div>
+            <div class="dv-row tier">
+                <div class="dv-tier-num">74%</div>
+                <div class="dv-tier-text">Carry out defined tasks. Negotiate a deal, resolve a complaint, reorder. The agent acts strictly on instruction.</div>
+            </div>
+            <div class="dv-row tier mid">
+                <div class="dv-tier-num">32%</div>
+                <div class="dv-tier-text">Decide what to buy within set boundaries, but the customer still makes the payment.</div>
+            </div>
+            <div class="dv-row tier low">
+                <div class="dv-tier-num">9%</div>
+                <div class="dv-tier-text">Initiate and complete the purchase on its own.</div>
+            </div>
+            <div class="dv-foot">Accenture Consumer Pulse 2026 &middot; 25,590 consumers, 16 countries</div>
+        </div>
+
+        <p>Trusted more than a best friend, and fewer than one in ten will let it press the button. They want an advisor, not a proxy.</p>
+
+        <p>Accenture's read on where that line sits is the sharpest thing in their report. It is not drawn by how complicated a purchase is. It is drawn by how much the purchase means. Identity, relationships, self-expression. People delegate what feels like work and keep hold of what feels like them.</p>
+
+        <p>Which locates high-ticket precisely. A car is identity. So is the sofa in the room where you host people, and the laptop you open every morning. These are not complicated purchases so much as meaningful ones, and meaning is the thing people refuse to hand over. Build toward autonomous checkout in a category like this and you are building for the 9%, in a world where Accenture is blunt that payments remain the wall.</p>
+
+        <h2>The friction moved</h2>
+
+        <p>Cox also asked which steps buyers would prefer to complete online, then measured what they actually did. Discovery is largely solved. The four widest gaps in the entire journey are all in the money: selecting finance and insurance products, finalising the price, applying for credit, and being told whether the credit came through.</p>
+
+        <p>That is the commitment moment. Buyers are asking to handle the most anxious part of the transaction in private, in their own time, and being walked to a desk instead.</p>
+
+        <p>The same tension shows in the shape of the purchase. 63% want a mix of online and in person. 40% get it. Over half buy entirely in person and 7% buy entirely online. That is not preference. That is a process that will not bend.</p>
+
+        <h2>Two jobs, not one funnel</h2>
+
+        <p>Put all of that together and the journey splits into two halves that behave nothing like each other.</p>
+
+        <p>The first is reaching a decision. Long, solitary, mostly digital, about half the total time, and now often done with an AI. The second is acting on it. Short, anxious, heavy with meaning, still stubbornly human, and starved of the online tools buyers keep asking for.</p>
+
+        <p>Almost every strategy I see funds the first and assumes the second will look after itself.</p>
+
+        <p>For now, consumers are asking brands to take this on. Accenture found that weekly generative AI users are more than twice as likely to want a retailer or brand as their agent of choice than an AI-native platform. That preference is not guaranteed to hold.</p>
+
+        <p>Because the same research found that 37% of behaviourally loyal shoppers would let an agent move them off a brand they prefer if it finds a better fit. Loyalty is becoming conditional on being demonstrably the right answer rather than the familiar one.</p>
+
+        <h2>What to measure instead</h2>
+
+        <p>The usual question about an AI sales agent is how much of the sale it can take over. In high-ticket the answer is very little, and it is not going to change soon.</p>
+
+        <p>The better question is what condition the buyer is in when they arrive. Cox's AI users turned up more satisfied, more convinced the price was fair, and more likely to say the experience beat their last one. Nothing about the dealership changed between those two groups. The buyer did.</p>
+
+        <p>So the number worth watching is not how many steps the agent completed. It is how certain the person was by the time a human took over.</p>
+
+        <p>It is early. Only 12% of car buyers visited an AI site last year, rising to 17% among new vehicle buyers. But when Cox asked consumers about the longer horizon, 83% said technologies like AI would change how they buy a vehicle over the next ten years. The direction looks settled. Timing is the only open question.</p>
+
+        <div class="sources">
+            <div class="sources-label">Sources</div>
+
+            <div class="source-item">
+                <div class="source-claim">Journey time, satisfaction, AI user comparison</div>
+                <div><a class="source-link" href="https://www.coxautoinc.com/wp-content/uploads/2026/01/2025-Cox-Automotive-Car-Buyer-Journey-Study-Summary.pdf" target="_blank" rel="noopener">Cox Automotive, 2025 Car Buyer Journey Study</a> <span class="source-note">&middot; 2,344 buyers, fielded Aug to Sept 2025, released January 2026</span></div>
+            </div>
+
+            <div class="source-item">
+                <div class="source-claim">Which steps buyers want online, and the omnichannel split</div>
+                <div><a class="source-link" href="https://www.coxautoinc.com/insights/2025-digitization-of-automotive-retail/" target="_blank" rel="noopener">Cox Automotive, Digitization of Automotive Retail</a> <span class="source-note">&middot; 2,193 consumers and 385 franchise dealers. The Car Buyer Journey deck reports these figures by combining that study with this one, so each is a cross-study reading.</span></div>
+            </div>
+
+            <div class="source-item">
+                <div class="source-claim">Ten year expectations for AI in car buying</div>
+                <div><a class="source-link" href="https://www.coxautoinc.com/wp-content/uploads/2025/06/2024-Digitization-of-Automotive-Retail-Study_Media-deck-FINAL.pdf" target="_blank" rel="noopener">Cox Automotive Evolving Consumer, reported on slide 21 here</a> <span class="source-note">&middot; note this is 2024 fieldwork, the oldest figure used in this piece</span></div>
+            </div>
+
+            <div class="source-item">
+                <div class="source-claim">Satisfaction record and study summary</div>
+                <div><a class="source-link" href="https://www.coxautoinc.com/insights/cox-automotive-car-buyer-journey-study-finds-efficiency-digital-tools-and-ai-drive-record-satisfaction/" target="_blank" rel="noopener">Cox Automotive announcement, January 2026</a></div>
+            </div>
+
+            <div class="source-item">
+                <div class="source-claim">Delegation gradient, trust, brand as agent of choice, conditional loyalty</div>
+                <div><a class="source-link" href="https://www.accenture.com/us-en/insights/consulting/talk-my-ai-agent" target="_blank" rel="noopener">Accenture Consumer Pulse 2026, Talk to my AI agent</a> <span class="source-note">&middot; 25,590 consumers across 16 countries, published June 2026</span></div>
+            </div>
+
+            <div class="source-item">
+                <div class="source-claim">Full Accenture report</div>
+                <div><a class="source-link" href="https://www.accenture.com/content/dam/accenture/final/accenture-com/document-fy26/q4/Accenture-Consumer-Pulse-2026.pdf" target="_blank" rel="noopener">Accenture Consumer Pulse 2026, full PDF</a></div>
+            </div>
+
+            <div class="source-item">
+                <div class="source-claim">Cost of ownership</div>
+                <div><a class="source-link" href="https://www.coxautoinc.com/wp-content/uploads/2026/01/2025-Cox-Automotive-Car-Buyer-Journey-Press-Release.pdf" target="_blank" rel="noopener">Cox Automotive, Car Buyer Journey press release</a> <span class="source-note">&middot; January 2026</span></div>
+            </div>
+
+            <p class="sources-caveat">Every figure above is quoted directly from the linked documents rather than from secondary coverage of them. Where a study reports a range, the more conservative reading is used.</p>
+        </div>
+
+    </div>
+</div>
+
+<!-- Article Footer -->
+<div class="article-footer-wrap">
+    <div class="article-footer-inner">
+        <a href="../index.html#writing" class="back-link">← Back to Writing</a>
+        <span class="share-label">Prashant Ramani · August 2026</span>
+    </div>
+</div>
+
+<!-- Site Footer -->
+<div class="site-footer">
+    <div class="footer-logo">Prashant Ramani</div>
+    <div class="footer-links">
+        <a href="https://www.linkedin.com/in/ramani-prashant/" target="_blank">LinkedIn</a>
+    </div>
+    <div class="footer-copy">© 2026</div>
+</div>
+
+</body>
+</html>
